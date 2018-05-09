@@ -101,3 +101,12 @@ lógica del negocio.
 * componentes
 * guías de estilos
 * documentación
+
+Convención para crear web componentes es que lleven un guión separando las dos palabras
+para crear nuestro componete necesitamos cponersl csu clase
+attatchement shadow dom
+
+hay que deiginiral en la ventna
+através de atributos nos comunicamos
+
+(Web Components Mozilla)[https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements]
