@@ -102,10 +102,9 @@ lógica del negocio.
 * guías de estilos
 * documentación
 
-
 Una convención para crear web componentes es que lleven un guión separando las dos palabras.
 Para crear nuestro componete necesitamos poner en su clase un attatchement shadow DOM
 
-La comunicación es atraves de los atributos.
+La comunicación es a través de los atributos.
 
 [Web Components Mozilla](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements)

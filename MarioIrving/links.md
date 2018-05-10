@@ -42,3 +42,6 @@
 ### Web components
 * [Web components](https://www.webcomponents.org/)
 * [Cells](https://github.com/BBVA/1-ninjahack/wiki/Introducci%C3%B3n-a-Cells)
+
+### Polymer
+* [Polymer Project](https://www.polymer-project.org/2.0/start/)
