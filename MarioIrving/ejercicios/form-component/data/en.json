@@ -1,0 +1,15 @@
+{
+  "layout-name-": "My-app",
+  "layout-input-": "input",
+  "layout-table": "table",
+  "layout-edit": "edit",
+  "menu-name": "Menu",
+  "menu-input": "input form",
+  "menu-table": "table form",
+  "menu-edit": "edit form",
+  "input-name": "fullName",
+  "button-input": "submit",
+  "button-table": "edit",
+  "button-edit": "send"
+
+}

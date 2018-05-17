@@ -1,0 +1,88 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<dom-module id="my-input-form">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+        padding: 10px;
+      }
+
+      .button{
+        background-color: #008CBA;
+        border: none;
+        border-radius: 4px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        color: #fff;
+        font-size: 16px;
+        margin-top: 20px;
+        padding: 10px 24px;
+        text-align: center;
+        text-decoration: none;
+      }
+
+      .button:hover {
+        background-color: #4CAF50;
+        color: white;
+      }
+
+    </style>
+
+    <div class="card">
+        <paper-input id="fullName" label="Full Name" value="[[valor]]"></paper-input>
+        <paper-button class="button" on-click="insertText">submit</paper-button>
+    </div>
+
+  </template>
+
+  <script>
+    class MyInputForm extends Polymer.Element {
+
+      static get is() {
+        return 'my-input-form';
+      }
+
+      static get properties() {
+          return {
+              fullName: {
+                  type: String,
+                  value: '',
+                  notify: true
+              }
+          };
+      }
+
+      connectedCallback() {
+          super.connectedCallback();
+      }
+
+      insertText(event) {
+          this.dispatchEvent(new CustomEvent('text-append', {
+              composed: true,
+              bubbles: true,
+              detail: {
+                fullName: this.$.fullName.value
+              }
+
+          }));
+
+        this.$.fullName.value='';
+      }
+
+    }
+
+    window.customElements.define(MyInputForm.is, MyInputForm);
+  </script>
+</dom-module>

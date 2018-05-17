@@ -45,3 +45,6 @@
 
 ### Polymer
 * [Polymer Project](https://www.polymer-project.org/2.0/start/)
+
+### Backend
+* [The Definitive Guide for building REST APIs](https://medium.com/clebertech-en/the-definitive-guide-for-building-rest-apis-f70d37b1d656)

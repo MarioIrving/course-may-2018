@@ -1,0 +1,116 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="footer-element">
+<template>
+    <style>
+      :host {
+        display: block;
+      }
+      :root {
+        --academy-white: #eee;
+        --academy-black: #111;
+        --front-color: #3d63ed;
+      }
+        .footer{
+          background-color: var(--front-color);
+          padding: 50px;
+        }
+
+        .footer_grid{
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          grid-auto-rows: 200px 200px 200px;
+          grid-gap: 10px;
+        }
+
+        .footer_card {
+          display: block;
+          position: relative;
+          overflow: hidden;
+          width: 100%;
+        }
+
+        .footer_card-div {
+          background-color: var(--academy-black);
+          bottom: 0;
+          box-sizing: border-box;
+          height: 80px;
+          padding: 0px;
+          text-align: center;
+          position: absolute;
+          width: 100%;
+        }
+
+        .footer_image{
+          width: 100%;
+        }
+
+        .footer_card-title{
+          color: var(--academy-white);
+          font-size: 10px;
+          text-transform: uppercase;
+        }
+
+        .footer_card-text {
+          color: var(--academy-white);
+        }
+
+        @media screen and (max-width: 600px) {
+          .footer_grid {
+            grid-template-columns: repeat(1, 1fr);
+            grid-template-rows: auto repeat(3, 300px);
+          }
+        }
+        </style>
+
+        <div class="footer">
+          <div class="footer_grid">
+
+            <dom-repeat items="[[icons]]" as="icon">
+              <template>
+                <div class="footer_card">
+                  <picture>
+                    <img class="footer_image" src="[[icon.image]]">
+                  </picture>
+                  <div class="footer_card-div">
+                    <h5 class="footer_card-title">[[icon.title]]</h5>
+                    <p class="footer_card-text">[[icon.description]]</p>
+                  </div>
+                </div>
+              </template>
+            </dom-repeat>
+          </div>
+        </div>
+
+    </template>
+
+    <script>
+      /**
+       * `footer-element`
+       * no
+       *
+       * @customElement
+       * @polymer
+       * @demo demo/index.html
+       */
+      class FooterElement extends Polymer.Element {
+        static get is() {
+          return 'footer-element';
+        }
+
+        static get properties() {
+          return {
+            icons: {
+              type: Array,
+              value: []
+            }
+        };
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+      }
+    }
+      window.customElements.define(FooterElement.is, FooterElement);
+  </script>
+</dom-module>

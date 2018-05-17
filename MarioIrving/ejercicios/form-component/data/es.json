@@ -1,0 +1,15 @@
+{
+  "layout-name-": "Mi-aplicación",
+  "layout-input-": "captura",
+  "layout-table": "lista",
+  "layout-edit": "edita",
+  "menu-name": "Menú",
+  "menu-input": "captura forma",
+  "menu-table": "tabla forma",
+  "menu-edit": "edita forma",
+  "input-name": "NombreCompleto",
+  "button-input": "enviar",
+  "button-table": "edita",
+  "button-edit": "envia"
+
+}

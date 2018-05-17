@@ -18,6 +18,12 @@ Se permite poner etiquetas como nombres.
  * Los atributos utilizan dash-case
  * Las propiedades usan camelCase por ser javascript.
 
+## 3. html imports
+ Podemos meter el html en el link import
+
+## 4. template
+ Aquí definidmos la infraestructura del componente.
+
 ```Polymer
  properties:{
    dataModel
@@ -39,6 +45,7 @@ La comunicación la realizamos a través de eventos.
 * {{prop}}
 
 ## ¿Cómo se comunuican los componentes?
+
 #### A través de custom events.
 
 ```Polymer
@@ -51,14 +58,14 @@ this.dispatchEvents (
   })
 ```
 
-//por ejemplo de javascript
+En Javascript tendríamos:
 
 ```Javascript
 document.addEventListener('', (event)=> {
    event.detail;
    })
 ```
-Si agregamos un listener lo debemos quitar.
+Pero si agregamos un listener lo debemos quitar.
 
 EL shadow DOM encapsula los estilos a través de:
 
@@ -79,9 +86,9 @@ Los Mixings te permiten sobreescribir lo que tenga el container a través de
 @ apply --my-component-mixing
 ```
 
-notas:
-el documento se le llama light DOM
-el html se puede quedar abierto
+Notas:
+* el documento se le llama light DOM
+* el html se puede quedar abierto
 
 ### instalar Polymer  
 * npm i bower -g
@@ -90,271 +97,250 @@ el html se puede quedar abierto
   * después que haya instalado debes elegir qué tipo de customización necesitas:
     * polymer 2.0 template
     * starter kit, etc.
+* polymer serve --open
+ * sirve para borrar el navegador una vez que se cargen los recursos para que te abra la demo.
 
-
-## 3. html imports
-Podemos meter el html en el link import
-
-## 4. template
-Aquí definidmos la infraestructura del componente.
-
-En Polymer se mete todo en la etiqueta template. No se configura el shadow DOM. Eso lo realiza Polymer.
+Notas:
+* En Polymer se mete todo en la etiqueta template. No se configura el shadow DOM. Eso lo realiza Polymer.
 * Polyfill webcomponents.js es un script que utilizan los navegadores a manera de 'plugins' para aceptar los webComponents
+* Polymer Aplication
+ * shop maneja progressive web app
+ * starter kit maneja el tema
 
-polymer apliaction
-shop maneja progressive web app
-starter kit maeja el tema de tuas
+## Archivos Polymer
 
-polymer.json
-reglas de servir y construir
-index.html no hace nada
-bower,json es igaula un package json la depedencia importante es "polymer": ...
+### polymer.json:
+Son las reglas de servir y construir
 
-difrencias entre devdependencies
-dependencies para funcionar como polymer
-dev depencies lo que necesitas para el desarrollo
+### index.html:
+No hace nada
 
-por ejemplo
-lo neecista para funcionar
-paperinput
-paperbutton
+### bower.json:
+Es igual a un package de JSON.
 
-}resolutions se usa cuando tenemos un clionflictr de deoendicas entre depoendeicas y subdependeicias
-si hay confilcito en resolutions determina que version se debe ocupar y esto es compliaado (crear compinentes que sean
-  compatibles con versiones)
+#### Dependencies
+La depedencia importante es "polymer":
 
-WCT web componente tester. carga todas las suites de innerHTML
-carpeta demo+
-importa los polufills en eb component loadres
-se importan demo-snippet y luego yel de nosotros
-lo único  que hace es que se vea bonito
+#### Diferencia entre dependencies y devdependencies
+* Las dependencies para se necesitan para funcionar como polymer. Tiene que estar instaladas.
+* Las devDependencies se necesitan para el desarrollo.
 
-polymer serve --open //sirve para aborr el navegador una vez que se carqhen los recursos para que te abra la demo.
+#### resolutions
+Se usa cuando tenemos un conflicto de dependencias entre dependencias y subdependencias. Si hay conflicto "resolutions" determina que versión se debe ocupar.Esto es complicado (crear componentes que sean
+compatibles con versiones).
 
+#### devDependencies  
+web-component-tester carga todas las suites de innerHTML
+
+### Demo
+* index.html
+Importa los polyfills en un component loader (link). Se importan los demo-snippet lo único que hace es que se vea bonito.
+---
+Notas:
 Cells es un framework que implementa Polymer
 * trapila
 * combina
 * separa elementos
 * los combina
 
-phyton, shell para hackers
-blockstop add para google
-
-webcomponents-loader son los polyfilss
-
-polymer gestiona de manera interna se genera un host virtual mete el component en una carpeta components donde estan todas las depencias, esta poendsado asi para que en el futuro lo utlicen otros componenetes. ../../iron-demo
-
-one-component es mi directorio
-cuando los instalamdos bower install nombrecomponente
-polymer es un componenye estatico
-
-las tecnlogías de moda son:
+Las tecnologías de moda son:
 1.Polymer
 2.react
 3.Vu
 
-import permite imiortar html completos
+Phyton y shell para hackers
+blockstop add para google
+webcomponents-loader son los polyfills
+---
 
-dom_module
-titne un atributo importa tne que es id tiene que coicidir con elcompoenente que hagamos
+Polymer gestiona de manera interna un host virtual mete el componente en una carpeta llamada "components" donde están todas las dependencias, esta pensado asi para que en el futuro lo utlicen otros componentes. ../../iron-demo
+
+El nombre del componente (one-component por ejemplo) es mi directorio. Cuando se instala:
+bower install [nombre componente]
+Polymer es un componente estático.
+
+### my-app.html
+
+#### DOM_module
+Tiene un atributo id el cual tiene que coincidir con el componente que hagamos.
+
+El formato general es:
+
 return one-component (por ejemplo)
 empaqueta todo
-template y
-html y css
-script
-javascript
+* template
+ * style
+* html
+* script:javascript
 
-formato:
-template
-style
-thml del maquetado
+#### Javascript
 
-get is regresa un string one component
+##### get is()
+Regresa un string del componente (one component)
 
-ger properties tiene que venir obligaotriamente proque lo busca polumer
+##### get properties()
+Mínimo debe tener:
 
-el objerto minimo dos coasas
-tipo de datos
-y el valor
-se recomentida que se incilaize vacio
-
+```polymer
 return {
-    title:{
-      type: String
-    }
+  page: {
+    type: String,
+    value: '',
+    reflectToAttribute: true,
+    observer: '_pageChanged',
+  },
+  routeData: Object,
+  subroute: Object,
+  // Polymer.Element#rootPath
+  rootPath: String,
+};
 }
+```
 
-conecetd CAllback va a ser nuestro constructor, Se manda llamr cuando el docmuemtne "append"
+* Se recomienda que el valor se inicialize vacio.
 
+connectedCallback va a ser nuestro constructor. Se manda llamar cuando el documento "append"
+
+```polymer
 connectedCallback{
-  super.connectedCallback(); //muy importante para inicializar.
-  this. (contexto del compoenente accedes a los metodos de polymer)
-  this.title=''; //hay una desventaja pulic sub no se va a enterar polymer de que el valor cambio.
-  la forma de notificar los cambios con el metodo set();
-    this.set(´title', 'hola curso');
+  super.connectedCallback();
+  //muy importante para inicializar.
 
+  this.title='';
+  // this. (contexto del componente donde accedes a los métodos de polymer
+  //si hacemos un cambio aquí, polymer no se entera del cambio.
+  //la forma de notificar los cambios es con el metodo set();
+
+  this.set(´title', 'hola curso');
 }
+```
 
-dos html
-el del componente y el del demo
+* webcomponents.org
+* (la tiendita para Anuar)
 
-get Title
+Es recomendable utilizar los componentes que genera Polymer
+* paper-element
+* paper
+* paper-input
 
-webcomponents.org (la tiendita para Anuar)
+Una vez seleccionado el elemento nos vamos al aside, pulsamos el signo '+' seleccionamos copiamos a la terminal. Con --save se guarda en la dependencia y se guarda en la carpeta.
 
-recomendabnle los componenetes que genera Polymer
-paper elements
-  paper
-    paperinput
+* link rel
+ * orden importación:
+  * importaciones core polymer generara espacio
+  * importación Polymer
+  * importación creado por mi
 
-nos vamos al aside signo de mas seleccionadmos copiadmos a la terminal
---save se guarda en la depencecia y se guarda en la carpeta
+cuando veamos un {} en la documentación de polymer podemos sobreescribir el método. Se trata de un mixing.
 
-
-orden importación:
-
-importanciones core polymer generara espacio
-
-importacion Polymer
-importacion creado por mi
-
-link rel
-
-cuando veamos un {} en la documentación podemos sobreescribir metodo es un mixin
-
-paper input      
-
-behaviour commportamientos para distintoselementos pro ejemplo valdiación
+* behaviour
+son commportamientos para distintos elementos pro ejemplo validación
 una funcionalidad reutilizable
 
-paper dynamic forms alfonsoRios
+Alfonso Rios creó un paper-dynamic-forms
 
-"on-" listener de eventos
+***"on-" listener de eventos***
 
 primera vez que cambie el value como está en vacio manda algo cambio
 
 someChange.
 
-si queremos instalar componenetes que dedenden de otros componenetes
+Si queremos instalar componenetes que dedenden de otros componenetes, solo se instalan las dependencias que se necesitan.En devdependencies no se instalan. El component nunca va a estar en lightDOM.
 
-solo se instalan las dependencias que se necesitan en devdependencies
-en devdependencies no se instalan
-el component nunca va a estar en lightDOM
+Regularmente si queremos comunicarnos entre componentes hermanos forzozamente tenemos que tener un nodo padre. En Cells no existe esta cuestión.Para ello la comunidad lo soluciona con "redox" te crea un arbol secundario. Haces que los componentes se conecten a redox
 
-si queremos comunicarse entre componentes hermanos forzoamente tenemos que tener un nodo padre
-En Cells no existe esta cuestión.
-
-la comunidad lo soluciona con redox te crea un arbol secundario. haces que los componentes se conecten a redox
-Redox usario
-
-this.$ es un querySelector ty solamente es por ID
-
+***this.$*** es un querySelector y solamente es por ID
+Notas:
 tipos compoenentes
-ui compoenentes
-lógica (peticios http (iron-ajax) )
+componentes "ui"
+lógica (peticiones http vía (iron-ajax) )
 
-tarea entender como funciona iron-ajax (entrar a la documentación, pruebas unitarias, demos)
-y rehacer la práctica uno. y la del lenguaje.
+Tarea entender como funciona iron-ajax (entrar la documentación, pruebas unitarias, demos)
+y rehacer la práctica uno, la del lenguaje.
 
 eskeleton de una aplicación Polymer
 
-práctica final es una aplicación que ya existe. web-mobile-specialist.firebaseapp
-para inscribirte sea a través de github.
+Práctica final es una aplicación que ya existe. web-mobile-specialist.firebaseapp para inscribirte es a través de github.
 
 * trabajar offline; manejo de sesiones.
 * hacer un codelabs databindig expecs migración Polymer 1 a 2
 
-i18n-app
-inicializarle con
-
 gulp para automaizar tareas
 firebase
-
 eslintrc se estipulan las reglas
 jsdoc para documentar
 eslint
 
 base href=/ concatena por default
 
-manifest json
-docuemnto estadnar es5 son las reglas para el navagador.
-display standalone porque las progressive son
-la plataforma ps4 es un standalone
+### manifest json
+Es un docuemnto estándar ES5 son reglas para el navagador.
+Las progressive aps son "display standalone"
+La plataforma PS4 es un standalone
 
-progressive Web Apps
-intenta reemplzar una aplicación nativa que no sea {Córdoba o ionic}
-trabajar offline, push notifications, el manifest JSon es parte importante de la aplicación
-el index también es parte importante para que funcione a través de los metas
+#### Progressive Web Apps
+Intenta reemplazar una aplicación nativa que no sea {Córdoba o ionic}. Se pueden realizar tareas como trabajar offline, push notifications, y otras. El manifest Json es parte importante de la aplicación. El index también es parte importante para que funcione a través de los "metas"
 
-serviceWorker
-proxy (middleware o  precacheo) entre el front o post patrón de optimizaciones
-polymer serve --open
-configura para cargar ciertas cosas cuando está en ral dispatchEvents
-scaffolding =  maquetación
+#### serviceWorker
+* Tiene la función de proxy (middleware o  precacheo) entre el front o post patrón de optimizaciones
+* configura para cargar ciertas cosas cuando está en ral dispatchEvents
+* scaffolding =  maquetación
 
-PRPL pattern
+#### PRPL pattern
 para trabajar en offline puede cachear losrecursos descargados
 lazyload carga por partes
 manejo de rutas
 
-la recomendación es que partan con la starter kit
-no todos los navegadores son compatiblescon serviceWorker
+Notas:
+* La recomendación es que partan con la starter kit, no todos los navegadores son compatibles con serviceWorker.
+* En la etiqueta noscript podemos crear una página dinámica para los usuarios que no tengan javascript.
+* polymer json es esencial para que se creen las demas dependencias
+* shell contiene la estructura es decir la etiquet my-app
+* fragments lo que se cachea en el tel por ejemplo
+* bundled todo el archivo comprimido
+* unbundled tiene identación, etc
 
-en la etiqueta noscript podemo crear una página dinámica para los usuarios que no tengan javascript
+Para la práctica:
+Para crear el componente:
+1. En src crear un nuevo archivo html my-component
+2. my-view poner el código
+3. comportamiento de traduccion que hicimos ayer en clase
+4. lenguajes varios por ejemplo lorem
+5. creamos una carpeta data y dentro tendremos un JSon
+6. my-componente cambiará el idioma
+7. event al terminar el ajax se va a hacer un custom ajax
+8. hacer un dropdown
+9. caso del cubo de lenguaje(adicional)
+ * gestures listeners con un array de idiomas global un index drag transición puede ser con flechita
 
-polymer json es esencail para que se crean las demas dependeincias
+10. El componente dispara una petición iron-ajax para cambiar el idioma y a través de custom elements se bindean los datos en los distintos elementos.
 
-shell contiene la estructura es decir la etiquet my-app
-fragments lo que se cahcea en el tel por ejemplo
-
-bundled todo el archivo comprimido
-unbunfled con identación etc
-
-npm install
-
-en src crear un nuevo archivo html my-component
-my-view poner el código
-
-comportamiento de traduccion que hicimos ayer en clase
-lenguaje por ejemplo lorem
-
-creamos una carpeta data y dentro tendremos un JSon
-my-componente swithceo el idioma
-que idioma es
-event al terminar el ajax se va a hacer un custom ajax
-hacer un dropdown
-caso del cubo de lenguaje
-
-gestures listeners con un array de idiomas global un index drag transición puede ser con flechita
-i18n-feature llamar branch
-
-el componente dispara una petición iron-ajax para cambiar el idioma y a través de customelements se va a bindear a los demás distintoselementos
-
-app layout
-nos permite estructurar el menu y la vista de la plataforma y contienen subcomponenetes
-
-app route
-route es diferencte a aploaction
-/;pafe se genera una rpoeedad pages
-propiedades en verde son de nosotros no pdemos modificar los atributos en azul
-
-route data es un object
-por cada subniegl necesita un route para sirve tail
-
-app location
-solo una por app. se dedica a ver la url la proporciona route
-se necesitan los dos para funcionar
-
+#### app layout
+Nos permite estructurar el menu y la vista de la plataforma y contienen subcomponenetes
 swipe open : narrow drawer se extiende o se repliega
 
-iron pages
+#### app route
+```html
+<app-route
+    route="{{route}}"
+    pattern="[[rootPath]]:page"
+    data="{{routeData}}"
+    tail="{{subroute}}">
+</app-route>
+```
+* route es diferente a application
+* pattern genera una propiedad pages
+* data es un object
+* por cada subruta se necesita un route como tail
+* las propiedades en verde son de nosotros no podemos modificar los atributos en azul
+
+#### app location
+Sólo una por app. Se dedica a ver la url. La proporciona route se necesitan los dos para funcionar
+
+iron-pages
 fallback selection que pasas si no encontré nada
 role facilita la navegación
 
 iron selector
 selected y att-for selected van juntos
 selected selecciona el string
-
-
-
-requisito a las 4pm  
