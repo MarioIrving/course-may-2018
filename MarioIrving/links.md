@@ -45,6 +45,11 @@
 
 ### Polymer
 * [Polymer Project](https://www.polymer-project.org/2.0/start/)
+* [Contact List](https://github.com/AnuarHarb/polymer-contactList)
 
 ### Backend
 * [The Definitive Guide for building REST APIs](https://medium.com/clebertech-en/the-definitive-guide-for-building-rest-apis-f70d37b1d656)
+
+## testing
+* [respositorio](https://github.com/Centraal-Academy/js-samples)
+* [atinfo/awesome-test-automation](https://github.com/atinfo/awesome-test-automation)
