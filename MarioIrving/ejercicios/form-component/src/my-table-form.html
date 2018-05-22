@@ -49,14 +49,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <div class="card">
-  <dom-repeat is="dom-repeat" items="{{arrayList}}" >
-      <template >
+
+      <template is="dom-repeat" items="{{arrayList}}" >
             <div class="grid">
-              <paper-input label="FullName" value="[[item.fullName]]" disabled ></paper-input>
-              <paper-button index=[[index]] class="button" on-click="editText">edit</paper-button>
+              <paper-input  label="FullName" value="[[item.fullName]]" disabled ></paper-input>
+              <paper-button id=[[index]] class="button" on-click="sendIndex">edit</paper-button>
             </div>
       </template>
-</dom-repeat>
+
 
     </div>
   </template>
@@ -73,20 +73,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   type: Array,
                   value: '',
                   notify: true
-              }
+              },
+
           };
       }
 
-      editText(event) {
+      sendIndex(event) {
           this.dispatchEvent(new CustomEvent('text-edit', {
               composed: true,
               bubbles: true,
               detail: {
-                fullNameIndex: event.target.index
+                fullNameIndex: this.$.index
               }
           }));
-
-        _pageChanged(editForm);
 
       }
 

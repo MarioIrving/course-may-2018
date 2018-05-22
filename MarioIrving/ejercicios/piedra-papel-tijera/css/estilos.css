@@ -1,0 +1,61 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  background-color: #e5fafe;
+  font-family: arial;
+}
+
+.content{
+
+  text-align: center;
+  background-color: white;
+  margin: 250px; 
+
+}
+
+.button{
+
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  color: #fff;
+  font-size: 16px;
+  margin-top: 20px;
+  padding: 10px 24px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.button:onclick{
+    background-color: #yellow;
+}
+
+.piedra{
+  background-color: #008CBA;
+
+}
+
+.piedra:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.papel{
+  background-color: #5d6b82;
+}
+
+.papel:hover {
+  background-color: #8e7a54;
+}
+
+.tijera{
+  background-color: red;
+
+}
+
+.tijera:hover {
+  background-color: orange;
+}

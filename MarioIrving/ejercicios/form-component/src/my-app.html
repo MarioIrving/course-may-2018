@@ -145,9 +145,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             attr-for-selected="name"
             fallback-selection="view404"
             role="main">
-          <my-input-form name="input-form" on-text-append="arrayAppend"></my-input-form>
-          <my-table-form name="table-form" array-list=[[fullNameArray]] on-text-edit="fullNameIndex"></my-table-form>
-          <my-edit-form name="edit-form" array-element="[[arrayElement]]" array-list=[[fullNameArray]] on-text-edit="fullNameChanged"></my-edit-form>
+
+          <my-input-form
+            name="input-form"
+            on-text-append="_setArray">
+          </my-input-form>
+
+          <my-table-form
+           name="table-form"
+           array-list=[[fullNameArray]]
+           on-text-edit="_getIndex">
+        </my-table-form>
+
+          <my-edit-form
+           name="edit-form"
+           array-list=[[fullNameArray]]
+           array-element="[[arrayElement]]"
+           on-text-edited="_changeArray">
+          </my-edit-form>
+
           <my-view404 name="view404"></my-view404>
         </iron-pages>
       </app-header-layout>
@@ -213,16 +229,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.page = 'view404';
       }
 
-      arrayAppend(event){
+      _setArray(event){
         this.push('fullNameArray', event.detail);
       }
 
-      fullNameIndex(event){
+      _getIndex(event){
         this.arrayElement = event.detail.fullNameIndex
       }
 
-      fullNameChanged(event){
-        this.arrayElement = event.detail.fullNameChanged[changedIndex]
+      _changeArray(event){
+        this.fullNameArray[event.detail.changedIndex]= event.detail.fullNameChanged
       }
 
     }
